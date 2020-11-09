@@ -1,6 +1,5 @@
 import React, { useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import PropTypes from 'prop-types';
 import Table from './components/Table';
 import InputFilter from './components/InputFilter';
 import FilterNumeric from './components/FilterNumeric';
