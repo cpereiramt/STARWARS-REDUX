@@ -6,6 +6,8 @@ import FilterNumeric from './components/FilterNumeric';
 import TagNumericFilters from './components/TagNumericFilters';
 import OrderComponent from './components/OrderComponent';
 import { fetchData } from './action/index';
+import PropTypes from 'prop-types';
+
 
 const App = () =>  {
   const value = useSelector((state) => state.data.results);
@@ -52,8 +54,9 @@ const App = () =>  {
 
 const mapStateToProps = (state) => ({ value: state });
 */
+}
 
-/* App.propTypes = {
+App.propTypes = {
   request: PropTypes.func,
   value: PropTypes.instanceOf(Object),
 };
@@ -61,6 +64,5 @@ const mapStateToProps = (state) => ({ value: state });
 App.defaultProps = {
   request: PropTypes.func,
   value: {},
-}; */
-}
+}; 
 export default App;
