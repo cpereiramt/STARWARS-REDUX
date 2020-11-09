@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import Table from './components/Table';
 import InputFilter from './components/InputFilter';
@@ -8,47 +8,53 @@ import TagNumericFilters from './components/TagNumericFilters';
 import OrderComponent from './components/OrderComponent';
 import { fetchData } from './action/index';
 
-class App extends Component {
-  constructor(props) {
+const App = () =>  {
+  const value = useSelector((state) => state.data.results);
+  const isLoading = useSelector((state) => state.isLoading);
+  const dispatch = useDispatch();
+/*   constructor(props) {
     super(props);
     this.fetchUrl = this.fetchUrl.bind(this);
+  } */
+  const fetchUrl = () => {
+    dispatch(fetchData())
+  /*   const { request } = this.props;
+    dispatch(request()); */
   }
+  
+  useEffect(() => {
+    fetchUrl(); 
+    console.log('executou fecth' + JSON.stringify(value) + '=======>  /n' ); 
+  }, [])
+  
 
-  componentDidMount() {
-    this.fetchUrl();
-  }
-
-  fetchUrl() {
-    const { request } = this.props;
-    request();
-  }
-
-  render() {
+/* 
     const { value } = this.props;
-    const { isLoading } = value;
-    return (
+    const { isLoading } = value; */
+/*     const { isLoading } = value;
+ */    return (
       <div>
         <InputFilter />
         <FilterNumeric />
         <TagNumericFilters />
         <OrderComponent />
-        {isLoading
+         {isLoading
           ? <h1>Loading....</h1>
-          : <Table />}
+          : <Table />} 
 
       </div>
 
     );
-  }
-}
 
-const mapDispatchToProps = (dispatch) => ({
+
+/* const mapDispatchToProps = (dispatch) => ({
   request: (e) => dispatch(fetchData(e)),
 });
 
 const mapStateToProps = (state) => ({ value: state });
+*/
 
-App.propTypes = {
+/* App.propTypes = {
   request: PropTypes.func,
   value: PropTypes.instanceOf(Object),
 };
@@ -56,6 +62,6 @@ App.propTypes = {
 App.defaultProps = {
   request: PropTypes.func,
   value: {},
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+}; */
+}
+export default App;

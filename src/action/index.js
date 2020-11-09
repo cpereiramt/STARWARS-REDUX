@@ -13,7 +13,7 @@ export const removeNumericFilter = (filterColumn) => ({ type: 'REMOVE_NUMERIC_FI
 export function fetchData() {
   return (dispatch) => {
     dispatch(requestData());
-    return fetch('https://swapi-trybe.herokuapp.com/api/planets/')
+    return fetch('https://swapi.dev/api/planets/')
       .then(
         (response) => response.json(),
       )
