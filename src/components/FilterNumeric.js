@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterNumeric } from '../action/index';
+import { Button } from 'reactstrap';
 
 const FilterNumeric = () =>  {
   const numericValues  = useSelector((state) => state.filters.filterByNumericValues);
@@ -30,8 +31,7 @@ const FilterNumeric = () =>  {
   }
  
   const filterOptions = () => {
-/*      const { numericValues } = this.props;
- */     const optionList = ['Selecione uma Opção', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+   const optionList = ['Selecione uma Opção', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const arrayColumState = translateStateToArray(numericValues);
     const filteredOptions = optionList.filter((option) => !arrayColumState.includes(option));
     return filteredOptions;
@@ -56,24 +56,16 @@ const FilterNumeric = () =>  {
         </select>
 
         <input type="number" placeholder="numeros" id="input-value" data-testid="value-filter" />
-        <button
-          type="button"
-          onClick={(e) => filterNumbers(e)}
+        <Button
+         color="primary"
+         onClick={(e) => filterNumbers(e)}
           data-testid="button-filter"
         >
         Filtrar
-        </button>
+        </Button>
       </div>
     );
   }
-
-/* const mapStateToProps = (state) => ({
-  numericValues: state.filters.filterByNumericValues,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  filterNumber: (e, v, h) => dispatch(filterNumeric(e, v, h)),
-}); */
 
 FilterNumeric.propTypes = {
   filterNumber: PropTypes.instanceOf(Function),

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterPlanet } from '../action/index';
+import { Input } from 'reactstrap';
 
 const InputFilter = () =>{
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const filterByName = (event) => {
   } 
     return (
       <div>
-        <input
+        <Input
           id="filter_name"
           placeholder="Filtro por nome de Planeta"
           onChange={(e) => filterByName(e)}
