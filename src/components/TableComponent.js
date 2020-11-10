@@ -8,6 +8,8 @@ import styled from 'styled-components';
 
 const TD = styled.td`
 font-size:12px;
+width:80%;
+align-items:center;
 `;
 
 
@@ -40,7 +42,8 @@ const TableComponent = () =>  {
       filterByNumericValues, order); 
     const headers = ['name', 'rotation_period', 'orbital_period', 'diameter', 'climate', 'gravity', 'terrain', 'surface_water', 'population', 'created', 'edited', 'url'];
     return (
-        <Table size="lg" hover striped>
+      <Container fluid={true}>       
+         <Table size="lg" hover striped>
           <thead data-testid="column-sort">
             <tr>
               {console.log(values)}
@@ -57,6 +60,8 @@ const TableComponent = () =>  {
               : null} 
           </tbody>          
         </Table>
+        </Container>
+ 
     );
   }
 TableComponent.propTypes = {
