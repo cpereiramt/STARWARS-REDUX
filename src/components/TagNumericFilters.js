@@ -1,13 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { removeNumericFilter } from '../action/index';
+import {useSelector, useDispatch} from 'react-redux';
 
-export class TagNumericFilters extends React.Component {
-  render() {
-    const { filters } = this.props;
-    const { removeFilter } = this.props;
-
+const TagNumericFilters = () =>{
+  const filters = useSelector((state) => state.filters.filterByNumericValues);
+  const dispatch = useDispatch();
     return (
       <div>
         {filters.map((element) => (
@@ -16,7 +14,7 @@ export class TagNumericFilters extends React.Component {
             <button
               name={element.column}
               data-testid="filter"
-              onClick={(event) => removeFilter(event.target.name)}
+              onClick={(event) => dispatch(removeNumericFilter(event.target.name))}
               type="button"
             >
                   x
@@ -26,16 +24,6 @@ export class TagNumericFilters extends React.Component {
       </div>
     );
   }
-}
-
-const mapStateToProps = (state) => ({
-  filters: state.filters.filterByNumericValues,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  removeFilter: (event) => dispatch(removeNumericFilter(event)),
-});
-
 TagNumericFilters.propTypes = {
   filters: PropTypes.string,
   removeFilter: PropTypes.instanceOf(Function),
@@ -46,4 +34,4 @@ TagNumericFilters.defaultProps = {
   removeFilter: '',
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TagNumericFilters);
+export default TagNumericFilters;

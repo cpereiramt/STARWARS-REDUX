@@ -1,24 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { filterNumeric } from '../action/index';
 
-export class FilterNumeric extends Component {
-  static translateStateToArray(state) {
+const FilterNumeric = () =>  {
+  const numericValues  = useSelector((state) => state.filters.filterByNumericValues);
+  const dispatch = useDispatch();
+
+  const translateStateToArray = (state) =>{
     const finalArray = [];
     state.map((option) => finalArray.push(option.column));
     return finalArray;
   }
-
-  constructor(props) {
-    super(props);
-    this.filterNumbers = this.filterNumbers.bind(this);
-    this.filterOptions = this.filterOptions.bind(this);
-  }
-
-  filterNumbers() {
-    const { filterNumber } = this.props;
-    // const textInput = document.getElementById('filter_name');
+  const filterNumbers = () =>{
     const column = document.getElementById('filter');
     const comparation = document.getElementById('comparation');
     const value = document.getElementById('input-value');
@@ -29,31 +23,30 @@ export class FilterNumeric extends Component {
 
       const selectionValue = value.value;
 
-      filterNumber(SelectionColumn, selectioncomparation, selectionValue);
+      dispatch(filterNumeric(SelectionColumn, selectioncomparation, selectionValue));
     } else {
       alert('Preencha Todos os campos para filtrar !');
     }
   }
-
-
-  filterOptions() {
-    const { numericValues } = this.props;
-    const optionList = ['Selecione uma Opção', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-    const arrayColumState = FilterNumeric.translateStateToArray(numericValues);
+ 
+  const filterOptions = () => {
+/*      const { numericValues } = this.props;
+ */     const optionList = ['Selecione uma Opção', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    const arrayColumState = translateStateToArray(numericValues);
     const filteredOptions = optionList.filter((option) => !arrayColumState.includes(option));
     return filteredOptions;
   }
 
-  render() {
-    const optionListToRender = this.filterOptions();
-    return (
+ 
+     const optionListToRender = filterOptions();
+     return (
       <div>
         <select data-testid="column-filter" id="filter">
-          {optionListToRender.map((option) => (
+           {optionListToRender.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>
-          ))}
+          ))} 
         </select>
         <select data-testid="comparison-filter" id="comparation">
           <option value=" ">Selecione Uma Opção </option>
@@ -65,7 +58,7 @@ export class FilterNumeric extends Component {
         <input type="number" placeholder="numeros" id="input-value" data-testid="value-filter" />
         <button
           type="button"
-          onClick={(e) => this.filterNumbers(e)}
+          onClick={(e) => filterNumbers(e)}
           data-testid="button-filter"
         >
         Filtrar
@@ -73,14 +66,14 @@ export class FilterNumeric extends Component {
       </div>
     );
   }
-}
-const mapStateToProps = (state) => ({
+
+/* const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   filterNumber: (e, v, h) => dispatch(filterNumeric(e, v, h)),
-});
+}); */
 
 FilterNumeric.propTypes = {
   filterNumber: PropTypes.instanceOf(Function),
@@ -91,4 +84,4 @@ FilterNumeric.defaultProps = {
   filterNumber: '',
   numericValues: [],
 };
-export default connect(mapStateToProps, mapDispatchToProps)(FilterNumeric);
+export default FilterNumeric;
