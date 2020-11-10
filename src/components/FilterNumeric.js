@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterNumeric } from '../action/index';
+import { Button } from 'reactstrap';
 
 const FilterNumeric = () =>  {
   const numericValues  = useSelector((state) => state.filters.filterByNumericValues);
@@ -55,13 +56,13 @@ const FilterNumeric = () =>  {
         </select>
 
         <input type="number" placeholder="numeros" id="input-value" data-testid="value-filter" />
-        <button
-          type="button"
-          onClick={(e) => filterNumbers(e)}
+        <Button
+         color="primary"
+         onClick={(e) => filterNumbers(e)}
           data-testid="button-filter"
         >
         Filtrar
-        </button>
+        </Button>
       </div>
     );
   }

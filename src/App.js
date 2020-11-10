@@ -8,6 +8,7 @@ import OrderComponent from './components/OrderComponent';
 import { fetchData } from './action/index';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { InputGroup } from 'reactstrap';
 
 const App = () =>  {
   const value = useSelector((state) => state.data.results);
@@ -23,9 +24,11 @@ const App = () =>  {
 
   return (
       <div>
+        <InputGroup>
         <InputFilter />
         <FilterNumeric />
         <TagNumericFilters />
+        </InputGroup>
         <OrderComponent />
          {isLoading
           ? <h1>Loading....</h1>

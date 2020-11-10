@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Proptypes from 'prop-types';
 import {useSelector, useDispatch} from 'react-redux';
 import { columnOrder } from '../action/index';
+import { Button } from 'reactstrap';
 
 const OrderComponent = () => {
   const values = useSelector((state) => state.data.results);
@@ -63,13 +64,13 @@ const OrderComponent = () => {
         </select>
 
         {renderRadioButton()}
-        <button
-          type="button"
+        <Button
+          color="primary"
           data-testid="column-sort-button"
           onClick={() => changeOrder()}
         >
                set order
-        </button>
+         </Button>
 
       </fieldset>
     );
