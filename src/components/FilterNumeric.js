@@ -30,8 +30,7 @@ const FilterNumeric = () =>  {
   }
  
   const filterOptions = () => {
-/*      const { numericValues } = this.props;
- */     const optionList = ['Selecione uma Opção', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+   const optionList = ['Selecione uma Opção', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const arrayColumState = translateStateToArray(numericValues);
     const filteredOptions = optionList.filter((option) => !arrayColumState.includes(option));
     return filteredOptions;
@@ -66,14 +65,6 @@ const FilterNumeric = () =>  {
       </div>
     );
   }
-
-/* const mapStateToProps = (state) => ({
-  numericValues: state.filters.filterByNumericValues,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  filterNumber: (e, v, h) => dispatch(filterNumeric(e, v, h)),
-}); */
 
 FilterNumeric.propTypes = {
   filterNumber: PropTypes.instanceOf(Function),

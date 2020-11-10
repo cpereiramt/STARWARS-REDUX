@@ -1,13 +1,13 @@
 import React, { useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import Table from './components/Table';
+import Table from './components/TableComponent';
 import InputFilter from './components/InputFilter';
 import FilterNumeric from './components/FilterNumeric';
 import TagNumericFilters from './components/TagNumericFilters';
 import OrderComponent from './components/OrderComponent';
 import { fetchData } from './action/index';
 import PropTypes from 'prop-types';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () =>  {
   const value = useSelector((state) => state.data.results);
