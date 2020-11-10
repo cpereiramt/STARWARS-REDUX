@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { filterNumeric } from '../action/index';
 
 const FilterNumeric = () =>  {
@@ -13,16 +12,8 @@ const FilterNumeric = () =>  {
     state.map((option) => finalArray.push(option.column));
     return finalArray;
   }
-/* 
-  constructor(props) {
-    super(props);
-    this.filterNumbers = this.filterNumbers.bind(this);
-    this.filterOptions = this.filterOptions.bind(this);
-  } */
-
   const filterNumbers = () =>{
-/*     const { filterNumber } = this.props;
- */    const column = document.getElementById('filter');
+    const column = document.getElementById('filter');
     const comparation = document.getElementById('comparation');
     const value = document.getElementById('input-value');
     if (column.selectedIndex > 0 && comparation.selectedIndex > 0 && value.value !== '') {

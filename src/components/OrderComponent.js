@@ -10,17 +10,6 @@ const OrderComponent = () => {
     column: 'Name',
     sort: 'ASC',
   });
-  /* constructor(props) {
-    super(props);
-    this.changeOrder = this.changeOrder.bind(this);
-    this.changeSelectValue = this.changeSelectValue.bind(this);
-    this.changeRadioValue = this.changeRadioValue.bind(this);
-    this.state = {
-      column: 'Name',
-      sort: 'ASC',
-    };
-  } */
-
   const changeRadioValue = (event) => {
     console.log('clicou no 1', event.target.value);
     setState({ sort: event.target.value });
@@ -32,12 +21,10 @@ const OrderComponent = () => {
   }
 
   const changeOrder = () => {
-/*     const { orderer } = this.props; */
     const { column, sort } = state;
 
     dispatch(columnOrder(column, sort));
   }
-
   const renderRadioButton = () => {
     return (
       <div onChange={changeRadioValue}>
@@ -86,9 +73,7 @@ const OrderComponent = () => {
 
       </fieldset>
     );
-  }
-
- 
+  } 
     const options = ['Name', 'rotation_period', 'orbital_period', 'diameter', 'climate'];
     return (
       <div>
@@ -97,15 +82,6 @@ const OrderComponent = () => {
       </div>
     );
   }
-
-
-/* const mapStateToProps = (state) => ({
-  values: state,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  orderer: (column, sort) => dispatch(columnOrder(column, sort)),
-}); */
 
 OrderComponent.propTypes = {
   orderer: Proptypes.instanceOf(Function),

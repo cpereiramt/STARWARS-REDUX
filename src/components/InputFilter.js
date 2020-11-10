@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
+import { useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterPlanet } from '../action/index';
 
 const InputFilter = () =>{
   const dispatch = useDispatch();
- /*  constructor(props) {
-    super(props);
-    this.filterByName = this.filterByName.bind(this);
-  } */
 
-  const filterByName = (event) => {
+const filterByName = (event) => {
     dispatch(filterPlanet(event.target.value));
   } 
     return (
@@ -25,11 +21,6 @@ const InputFilter = () =>{
       </div>
     );
   }
-
-/* const mapDispatchToProps = (dispatch) => ({
-  filter: (e) => dispatch(filterPlanet(e)),
-});
- */
 InputFilter.propTypes = {
   filter: PropTypes.instanceOf(Function),
 };

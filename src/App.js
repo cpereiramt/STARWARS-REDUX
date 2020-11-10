@@ -13,27 +13,15 @@ const App = () =>  {
   const value = useSelector((state) => state.data.results);
   const isLoading = useSelector((state) => state.isLoading);
   const dispatch = useDispatch();
-/*   constructor(props) {
-    super(props);
-    this.fetchUrl = this.fetchUrl.bind(this);
-  } */
   const fetchUrl = () => {
     dispatch(fetchData())
-  /*   const { request } = this.props;
-    dispatch(request()); */
-  }
-  
+  }  
   useEffect(() => {
     fetchUrl(); 
     console.log('executou fecth' + JSON.stringify(value) + '=======>  /n' ); 
   }, [])
-  
 
-/* 
-    const { value } = this.props;
-    const { isLoading } = value; */
-/*     const { isLoading } = value;
- */    return (
+  return (
       <div>
         <InputFilter />
         <FilterNumeric />
@@ -41,19 +29,9 @@ const App = () =>  {
         <OrderComponent />
          {isLoading
           ? <h1>Loading....</h1>
-          : <Table />} 
-
+          : <Table />}
       </div>
-
     );
-
-
-/* const mapDispatchToProps = (dispatch) => ({
-  request: (e) => dispatch(fetchData(e)),
-});
-
-const mapStateToProps = (state) => ({ value: state });
-*/
 }
 
 App.propTypes = {

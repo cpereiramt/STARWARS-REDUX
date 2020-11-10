@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchData } from '../action/index';
+import React from 'react';
 import OrderColumn from '../helpers/functions';
+import {useSelector} from 'react-redux';
 
-export class Table extends Component {
-  static renderizaTableBody(element) {
+const Table = () =>  {
+  const renderizaTableBody = (element) => {
     return (
       <tr key={element.name}>
         <td>{element.name}</td>
@@ -24,42 +23,33 @@ export class Table extends Component {
       </tr>
     );
   }
-
-  render() {
-    const { value } = this.props;
-    const { filters } = value;
-    const { filterByName, filterByNumericValues, order } = filters;
-    const { data } = value;
+   const values = useSelector((state) => state);
+     const {filters } = values;
+     const { filterByName, filterByNumericValues, order } = filters;
+     const {data }= values;
     const planets = OrderColumn(data.results,
       filterByName.name,
-      filterByNumericValues, order);
+      filterByNumericValues, order); 
     const headers = ['name', 'rotation_period', 'orbital_period', 'diameter', 'climate', 'gravity', 'terrain', 'surface_water', 'population', 'films', 'created', 'edited', 'url'];
     return (
       <div>
         <table>
           <thead data-testid="column-sort">
             <tr>
+              {console.log(values)}
               {headers.map((element) => <th key={element}>{element}</th>)}
             </tr>
           </thead>
           <tbody>
-            {planets !== undefined
+              {planets !== undefined
               ? planets.map((element) => (
-                Table.renderizaTableBody(element)))
-              : null}
+                renderizaTableBody(element)))
+              : null} 
           </tbody>
         </table>
       </div>
     );
   }
-}
-
-const mapStateToProps = (state) => ({ value: state });
-
-const mapDispatchToProps = (dispatch) => ({
-  request: (e) => dispatch(fetchData(e)),
-});
-
 Table.propTypes = {
   value: PropTypes.instanceOf(Object),
 };
@@ -68,4 +58,4 @@ Table.defaultProps = {
   value: {},
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default Table;
