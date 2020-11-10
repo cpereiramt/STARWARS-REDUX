@@ -7,11 +7,19 @@ import styled from 'styled-components';
 
 
 const TD = styled.td`
-font-size:12px;
+font-size:14px;
 width:80%;
-align-items:center;
+text-align: center;
+vertical-align: middle;
 `;
 
+const THEAD = styled.thead`
+  position:sticky;
+    top:10;
+    z-index:1;
+    border-top:0;
+    background: #ededed;
+`;
 
 
 const TableComponent = () =>  {
@@ -43,13 +51,13 @@ const TableComponent = () =>  {
     const headers = ['name', 'rotation_period', 'orbital_period', 'diameter', 'climate', 'gravity', 'terrain', 'surface_water', 'population', 'created', 'edited', 'url'];
     return (
       <Container fluid={true}>       
-         <Table size="lg" hover striped>
-          <thead data-testid="column-sort">
+         <Table size="lg" hover>
+          <THEAD data-testid="column-sort">
             <tr>
               {console.log(values)}
               {headers.map((element) => <th key={element} scope="row">{element}</th>)}
             </tr>
-          </thead>
+          </THEAD>
           <tbody>
               {planets !== undefined
               ? planets.map((element) => (
